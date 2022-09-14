@@ -1,0 +1,217 @@
+{% extends "layout.html" %}
+
+{% block heading%}
+{% endblock %}
+
+{% block body %}
+    <header>
+      <div class="wrap">
+        <div class="header">
+          <div class="nav">
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a href="/homepage" class="nav__link nav__link--active">Lung cancer diagnosis</a>
+              </li>
+              <li class="nav__item">
+                <a href="/hybrid" class="nav__link">Recommended hybrid lung diagnosis</a>
+              </li>
+              <li class="nav__item">
+                <a href="/about" class="nav__link">How it works</a>
+              </li>
+            </ul>
+
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a href="/login" class="nav__link-right">
+                  <i class="fas fa-search"></i>
+                </a>
+              </li>
+              <li class="nav__item">
+                <a href="/login" class="nav__link-right">
+                  <i class="far fa-bell"></i>
+                </a>
+              </li>
+              <li class="nav__item">
+                <a href="/login" class="nav__link-right">
+                  <i class="far fa-heart"></i>
+                </a>
+              </li>
+
+              <li class="nav__item">
+                <a href="/signup" class="nav__link-right">
+                  <img
+                    src="../static/img/139424343_2451742284972512_1366896137451579619_o.jpg"
+                    alt="avatar"
+                    class="header-nav-avatar"
+                  />
+                  <i class="fas fa-chevron-down header-arrow"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="slider">
+        <div class="header__title-page">
+          <div class="title__intro">
+            <h2 class="header__title">
+              LUNG CANCER SUPPORT SYSTEM
+            </h2>
+            <p class="header__title-solgan">Your personal lung assistant</p>
+            <a href="#container" class="header__title-btn btn"
+              >Suggest a non-invasive diagnosis</a
+            >
+            <div class="header__title-icon-list">
+              <i class="fas fa-weight header__title-icon"
+                ><span>Lung Cancer Symptoms</span></i
+              >
+              <i class="fas fa-utensils header__title-icon"
+                ><span></span></i
+              >
+              <i class="fas fa-dumbbell header__title-icon"
+                ><span>Based Machine Learning</span></i
+              >
+            </div>
+          </div>
+          <div class="img-slider">
+            <img src="../static/img/coffee-time.png" alt="cooking" />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container" id="container">
+      <div class="title">
+        <h2>Lung Cancer Diagnosis</h2>
+        <p>
+          This is a lung support system which detects whether you has lung cancer based on
+          your survey symptoms data.
+          <strong>Diagnose your lung condition right here in seconds.</strong>
+        </p>
+        <p>Put your lung on a test. Ready to give it a shot?</p>
+      </div>
+      <div class="login">
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('diagnose')}}"method="post">
+                      <div>
+    	                  <div
+                            id="gender-select"
+                            class="btn-group mr-2"
+                            role="group"
+                            aria-label="First group"
+                          >
+                            <label
+                              name="gender-m"
+                              for="gender-0"
+                              class="
+                                btn
+                                nutrition-selector-btn
+                                btn-selector-secondary
+                              "
+                            >
+                              <input
+                                type="radio"
+                                name="gender"
+                                id="gender-0"
+                                value="0"
+                                required="required"
+                              />
+                              Male
+                            </label>
+                            <label
+                              name="gender-f"
+                              for="gender-1"
+                              class="
+                                btn
+                                nutrition-selector-btn
+                                btn-selector-secondary
+                              "
+                            >
+                              <input
+                                type="radio"
+                                name="gender"
+                                id="gender-1"
+                                value="1"
+                                required="required"
+                              />
+                              Female</label
+                            >
+                          </div>
+                        </div>
+        <input type="radio" name="age" placeholder="Age" required="required" />
+		<input type="radio" name="smoking" placeholder="Smoking" required="required" />
+		<input type="text" name="yellow_fingers" placeholder="Yellow fingers" required="required" />
+        <input type="text" name="axiety" placeholder="Axiety" required="required" />
+        <input type="text" name="peer_pressure" placeholder="Peer pressure" required="required" />
+        <input type="text" name="chronic_disease" placeholder="Chronic disease" required="required" />
+        <input type="text" name="fatigue" placeholder="Fatigue" required="required" />
+        <input type="text" name="allergy" placeholder="Allergy" required="required" />
+        <input type="text" name="wheezing" placeholder="Wheezing" required="required" />
+        <input type="text" name="alcohol_consuming" placeholder="Alcohol consuming" required="required" />
+        <input type="text" name="coughing" placeholder="Coughing" required="required" />
+        <input type="text" name="shortness_of_breath" placeholder="Shortness of breath" required="required" />
+        <input type="text" name="swallowing_difficulty" placeholder="Swallowing difficulty" required="required" />
+        <input type="text" name="chest_pain" placeholder="Chest pain" required="required" />
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Diagnose</button>
+    </form>
+
+   <br>
+   <br>
+        <strong>{{ prediction_text }}</strong>
+ </div>
+
+
+    </div>
+    <footer class="footer"></footer>
+<script>
+      var ctx = document.getElementById("chart").getContext("2d");
+      var chart = new Chart (ctx, {
+        type: "line",
+        data: {
+            labels: {{labels | safe }}
+            datasets: [
+                {
+                label : "Symptoms",
+                data: {{values | safe}},
+              fill: true,
+              backgroundColor: ["#4C8F62", "#B33030", "#FFD061"]
+            }
+          ]
+        },
+        options: {
+          responsive: false
+            }
+          }
+        }
+      });
+  </script>
+
+    <script>
+      var ctx = document.getElementById("pieChart").getContext("2d");
+      var pieChart = new Chart(ctx, {type: "pie",  data: { labels: {{labels | safe}},
+          datasets: [
+            {
+              label: "Nutritions",
+              data: {{prediction | safe}},
+              fill: true,
+              backgroundColor: ["#4C8F62", "#B33030", "#FFD061"]
+            }
+          ]
+        },
+        options: {
+          responsive: false,
+          tooltips: {
+            callbacks: {
+              labels: {{labels | safe}},
+              data: {{values | safe}}
+            }
+          }
+        }
+      });
+    </script>
+    <script
+      type="text/javascript"
+      src="../static/js/script.js"
+    ></script>
+{% endblock %}

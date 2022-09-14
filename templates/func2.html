@@ -1,0 +1,145 @@
+{% extends "layout.html" %}
+
+{% block heading%}
+
+{% endblock %}
+
+{% block body %}
+<header>
+      <div class="wrap">
+        <div class="header">
+          <div class="nav">
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a href="/homepage" class="nav__link nav__link--active">Lung cancer diagnosis</a>
+              </li>
+              <li class="nav__item">
+                <a href="/hybrid" class="nav__link">Recommended hybrid lung diagnosis</a>
+              </li>
+              <li class="nav__item">
+                <a href="/about" class="nav__link">How it works</a>
+              </li>
+            </ul>
+
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a href="/login" class="nav__link-right">
+                  <i class="fas fa-search"></i>
+                </a>
+              </li>
+              <li class="nav__item">
+                <a href="/login" class="nav__link-right">
+                  <i class="far fa-bell"></i>
+                </a>
+              </li>
+              <li class="nav__item">
+                <a href="/login" class="nav__link-right">
+                  <i class="far fa-heart"></i>
+                </a>
+              </li>
+
+              <li class="nav__item">
+                <a href="/signup" class="nav__link-right">
+                  <img
+                    src="../static/img/139424343_2451742284972512_1366896137451579619_o.jpg"
+                    alt="avatar"
+                    class="header-nav-avatar"
+                  />
+                  <i class="fas fa-chevron-down header-arrow"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <header>
+    <div class="container__categories">
+        <div class="modal__container">
+          <div class="modal-header">
+            <h4 class="modal-title">Advanced lung cancer detection based hybrid AI techniques</h4>
+          </div>
+          <div class="alert-text">
+            <p>
+              Based on your entries, our algorithms came up with an early lung diagnosis.
+              You should consult a lung professional before doing any recommended treatment.
+            </p>
+            <p>
+              <strong
+                >Keep in mind that this is an aid system. It do not replace any practitioners advice!</strong
+            </p>
+          </div>
+        </div>
+    </div>
+    </header>
+<form action="{{ url_for('hybrid_predict')}}" method="post" class="form-inline">
+        <fieldset>
+            <div class="tabcontent" id="new">
+
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <input class="form-control" type="text" name="gender" required="required"/>
+                 </div>
+                  <div class="form-group">
+                    <label for="age">Age</label>
+                    <input class="form-control" type="text" name="age" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="smoking">Smoking</label>
+                    <input class="form-control" type="text" name="smoking" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="yellow_fingers">Yellow Fingers</label>
+                    <input class="form-control" type="text" name="yellow_fingers" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="axiety">Axiety</label>
+                    <input class="form-control" type="text" name="axiety" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="peer_pressure">Peer Pressure</label>
+                    <input class="form-control" type="text" name="peer_pressure" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="chronic_disease">Chronic Disease</label>
+                    <input class="form-control" type="text" name="chronic_disease" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="fatigue">Fatigue</label>
+                    <input class="form-control" type="text" name="fatigue" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="allergy">Allergy</label>
+                    <input class="form-control" type="text" name="allergy" required="required"/>
+                  </div>
+                <div class="form-group">
+                    <label for="wheezing">Wheezing</label>
+                    <input class="form-control" type="text" name="wheezing" required="required"/>
+                  </div>
+                <div class="form-group">
+                    <label for="alcohol_consuming">Alcohol Consuming</label>
+                    <input class="form-control" type="text" name="alcohol_consuming" required="required"/>
+                  </div>
+                <div class="form-group">
+                    <label for="coughing">Coughing</label>
+                    <input class="form-control" type="text" name="coughing" required="required"/>
+                  </div>
+                <div class="form-group">
+                    <label for="shortness_of_breath">Shortness Of Breath</label>
+                    <input class="form-control" type="text" name="shortness_of_breath" required="required"/>
+                  </div>
+                <div class="form-group">
+                    <label for="swallowing_difficulty">Swallowing Difficulty</label>
+                    <input class="form-control" type="text" name="swallowing_difficulty" required="required"/>
+                  </div>
+                <div class="form-group">
+                    <label for="chest_pain">Chest Pain</label>
+                    <input class="form-control" type="text" name="chest_pain" required="required"/>
+                  </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-large">Diagnose</button>
+            </div>
+        </fieldset>
+</form>
+    <br>
+    <strong>{{ prediction_text }}</strong>
+    </br>
+{% endblock %}

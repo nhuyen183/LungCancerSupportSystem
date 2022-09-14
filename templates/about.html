@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block heading%}
+{% endblock %}
+
+{% block body %}
+    <form id="form1">
+
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4">About the Lung Cancer</h1>
+      <p>Welcome!
+          This is a lung support system which detects whether you has lung cancer based on
+          your survey symptoms data.
+          <strong>Diagnose your lung condition right here in seconds.</strong>
+        </p>
+      <p><a class="btn btn-primary btn-lg" href="/login" role="button">Help &raquo;</a></p>
+
+      <a href="https://www.cancer.org/cancer/lung-cancer/about/what-is.html">READ MORE ABOUT LUNG CANCER</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Admin</h2>
+        <p>The system provides instituitons with an Admin account to generate risk assessments for their patients.</p>
+        <p><a class="btn btn-secondary" href="/login" role="button">Login &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>How does it Work?</h2>
+        <p>The diagnosis system makes use of machine learning models that supports generate accurate risk assessments.</p>
+        <p><a class="btn btn-secondary" href="/login" role="button">Generate Assessment &raquo;</a></p>
+      </div>
+    </div>
+
+    <hr>
+
+  </div>
+
+</main>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script>
+
+    </form>
+{% endblock %}
